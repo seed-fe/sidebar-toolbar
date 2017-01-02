@@ -4,8 +4,9 @@
     bottom: 5px;
     margin-left: -$toolbar-size / 2;
 }
-.toolbar-item, .toolbar-layer {
-    @include bgi;
+%background-image {
+    background-image: url("../images/toolbar.png");
+    background-repeat: no-repeat;
 }
 .toolbar-item {
     position: relative;
@@ -13,6 +14,7 @@
     width: $toolbar-size;
     height: $toolbar-size;
     margin-top: 1px;
+    @extend %background-image;
     transition: background-position 1s;
     &:hover {
         .toolbar-layer {
@@ -31,6 +33,7 @@
     right: $toolbar-size - 6;
     bottom: -10px;
     width: 172px;
+    @extend %background-image;
     transform-origin: 95% 95%;
     @include toolbar-layer-ot(0, 0.01);
     transition: all 1s;

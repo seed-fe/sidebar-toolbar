@@ -1,7 +1,3 @@
-@mixin bgi {
-    background-image: url("../images/toolbar.png");
-    background-repeat: no-repeat;
-}
 @mixin bp($bpi, $bph) {
     background-position: 0 #{$bpi}px;
     &:hover {
