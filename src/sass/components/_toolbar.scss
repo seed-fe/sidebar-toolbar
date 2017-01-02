@@ -1,0 +1,49 @@
+.toolbar {
+    position: fixed;
+    left: 50%;
+    bottom: 5px;
+    margin-left: -$toolbar-size / 2;
+}
+.toolbar-item, .toolbar-layer {
+    @include bgi;
+}
+.toolbar-item {
+    position: relative;
+    display: block;
+    width: $toolbar-size;
+    height: $toolbar-size;
+    margin-top: 1px;
+    transition: background-position 1s;
+    &:hover {
+        .toolbar-layer {
+            @include toolbar-layer-ot(1, 1);
+        }
+    }
+}
+.toolbar-item-weixin {
+    @include bp(-798, -860);
+    .toolbar-layer {
+        @include toolbar-layer(212, 0);
+    }
+}
+.toolbar-layer {
+    position: absolute;
+    right: $toolbar-size - 6;
+    bottom: -10px;
+    width: 172px;
+    transform-origin: 95% 95%;
+    @include toolbar-layer-ot(0, 0.01);
+    transition: all 1s;
+}
+.toolbar-item-feedback {
+    @include bp(-426, -488);
+}
+.toolbar-item-app {
+    @include bp(-550, -612);
+    .toolbar-layer {
+        @include toolbar-layer(194, -222);        
+    }
+}
+.toolbar-item-top {
+    @include bp(-674, -736);
+}
