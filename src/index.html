@@ -6,7 +6,8 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
-    <div class="toolbar">
+    <!-- 全用css sprite -->
+    <!-- <div class="toolbar">
         <a href="javascript:;" class="toolbar-item toolbar-item-weixin">
             <span class="toolbar-layer"></span>
         </a>
@@ -15,6 +16,35 @@
             <span class="toolbar-layer"></span>
         </a>
         <a href="javascript:;" class="toolbar-item toolbar-item-top"></a>
+    </div> -->
+    <!-- 用图标字体和CSS Sprite -->
+    <div class="toolbar">
+        <a href="javascript:;" class="toolbar-item">
+            <span class="toolbar-btn">
+                <i class="toolbar-icon icon-wechat"></i>
+                <span class="toolbar-text">公众<br>账号</span>
+            </span>
+            <span class="toolbar-layer toolbar-layer-weixin"></span>
+        </a>
+        <a href="javascript:;" class="toolbar-item">
+            <span class="toolbar-btn">
+                <i class="toolbar-icon icon-bubble"></i>
+                <span class="toolbar-text">意见<br>反馈</span>
+            </span>
+        </a>
+        <a href="javascript:;" class="toolbar-item">
+            <span class="toolbar-btn">
+                <i class="toolbar-icon icon-mobile"></i>
+                <span class="toolbar-text">APP<br>下载</span>
+            </span>
+            <span class="toolbar-layer toolbar-layer-app"></span>
+        </a>
+        <a href="javascript:;" class="toolbar-item">
+            <span class="toolbar-btn">
+                <i class="toolbar-icon icon-arrow-up2"></i>
+                <span class="toolbar-text">返回<br>顶部</span>
+            </span>
+        </a>
     </div>
     <script src="js/require.js" data-main="js/main"></script>
 </body>

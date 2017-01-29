@@ -1,6 +1,6 @@
 requirejs.config({
     paths: {
-        jquery: 'jquery-3.1.1.min'
+        jquery: 'https://cdn.bootcss.com/jquery/3.1.1/jquery.min'
     }
 });
 /*引入模块，第一个参数是要引入的模块，第二个参数是一个回调函数，回调函数依赖于第一个参数里加载的模块，要等到第一个参数里的模块都加载完成才会执行*/

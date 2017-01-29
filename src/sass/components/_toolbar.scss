@@ -1,11 +1,60 @@
+/* 全用CSS Sprite */
+// .toolbar {
+//     position: fixed;
+//     left: 50%;
+//     bottom: 5px;
+//     margin-left: -$toolbar-size / 2;
+// }
+// .toolbar-item, .toolbar-layer {
+//     @include bgi;
+// }
+// .toolbar-item {
+//     position: relative;
+//     display: block;
+//     width: $toolbar-size;
+//     height: $toolbar-size;
+//     margin-top: 1px;
+//     transition: background-position 1s;
+//     &:hover {
+//         .toolbar-layer {
+//             @include toolbar-layer-ot(1, 1);
+//         }
+//     }
+// }
+// .toolbar-item-weixin {
+//     @include bp(-798, -860);
+//     .toolbar-layer {
+//         @include toolbar-layer(212, 0);
+//     }
+// }
+// .toolbar-layer {
+//     position: absolute;
+//     right: $toolbar-size - 6;
+//     bottom: -10px;
+//     width: 172px;
+//     transform-origin: 95% 95%;
+//     @include toolbar-layer-ot(0, 0.01);
+//     transition: all 1s;
+// }
+// .toolbar-item-feedback {
+//     @include bp(-426, -488);
+// }
+// .toolbar-item-app {
+//     @include bp(-550, -612);
+//     .toolbar-layer {
+//         @include toolbar-layer(194, -222);        
+//     }
+// }
+// .toolbar-item-top {
+//     @include bp(-674, -736);
+// }
+
+/* 用字体图标和CSS Sprite结合 */
 .toolbar {
     position: fixed;
     left: 50%;
     bottom: 5px;
     margin-left: -$toolbar-size / 2;
-}
-.toolbar-item, .toolbar-layer {
-    @include bgi;
 }
 .toolbar-item {
     position: relative;
@@ -13,37 +62,80 @@
     width: $toolbar-size;
     height: $toolbar-size;
     margin-top: 1px;
-    transition: background-position 1s;
     &:hover {
+        .toolbar-icon {
+            top: -$toolbar-size;
+        }
+        .toolbar-text {
+            top: 0;
+        }
         .toolbar-layer {
             @include toolbar-layer-ot(1, 1);
         }
     }
 }
-.toolbar-item-weixin {
-    @include bp(-798, -860);
-    .toolbar-layer {
-        @include toolbar-layer(212, 0);
-    }
+%toolbar {
+    position: absolute;
+    left: 0;
+    width: $toolbar-size;
+    height: $toolbar-size;
+}
+%toolbar-content {
+    color: #fff;
+    text-align: center;
+    transition: top 1s;
+}
+.toolbar-btn {
+    @extend %toolbar;
+    top: 0;
+    overflow: hidden;
+}
+.toolbar-icon {
+    @extend %toolbar;
+    top: 0;
+    background-color: #d0d6d9;
+    font-size: 30px;
+    @extend %toolbar-content;
+    line-height: $toolbar-size;
+}
+.toolbar-text {
+    @extend %toolbar;
+    top: $toolbar-size;
+    background-color: #98a1a6;
+    padding-top: 12px;
+    font-size: 12px;
+    @extend %toolbar-content;
+    line-height: 1.2;    
 }
 .toolbar-layer {
     position: absolute;
     right: $toolbar-size - 6;
     bottom: -10px;
     width: 172px;
-    transform-origin: 95% 95%;
+    background: url('../images/toolbar_img.png') no-repeat;
     @include toolbar-layer-ot(0, 0.01);
+    transform-origin: 95% 95%;
     transition: all 1s;
 }
-.toolbar-item-feedback {
-    @include bp(-426, -488);
+.toolbar-layer-weixin {
+    @include toolbar-layer(212, 0);
 }
-.toolbar-item-app {
-    @include bp(-550, -612);
-    .toolbar-layer {
-        @include toolbar-layer(194, -222);        
-    }
+.toolbar-layer-app {
+    @include toolbar-layer(194, -222);
 }
-.toolbar-item-top {
-    @include bp(-674, -736);
+.icon-wechat {
+
+}
+
+
+
+.icon-bubble {
+
+}
+.icon-mobile {
+
+}
+
+.icon-arrow-up2 {
+
 }

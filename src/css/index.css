@@ -1,13 +1,49 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'icomoon';
+  src: url("fonts/icomoon.eot?3apv0g");
+  src: url("fonts/icomoon.eot?3apv0g#iefix") format("embedded-opentype"), url("fonts/icomoon.ttf?3apv0g") format("truetype"), url("fonts/icomoon.woff?3apv0g") format("woff"), url("fonts/icomoon.svg?3apv0g#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-wechat:before {
+  content: "\e900";
+}
+
+.icon-mobile:before {
+  content: "\e958";
+}
+
+.icon-bubble:before {
+  content: "\e96b";
+}
+
+.icon-arrow-up2:before {
+  content: "\ea3a";
+}
+
+/* 全用CSS Sprite */
+/* 用字体图标和CSS Sprite结合 */
 .toolbar {
   position: fixed;
   left: 50%;
   bottom: 5px;
   margin-left: -26px;
-}
-
-.toolbar-item, .toolbar-layer {
-  background-image: url("../images/toolbar.png");
-  background-repeat: no-repeat;
 }
 
 .toolbar-item {
@@ -16,7 +52,14 @@
   width: 52px;
   height: 52px;
   margin-top: 1px;
-  transition: background-position 1s;
+}
+
+.toolbar-item:hover .toolbar-icon {
+  top: -52px;
+}
+
+.toolbar-item:hover .toolbar-text {
+  top: 0;
 }
 
 .toolbar-item:hover .toolbar-layer {
@@ -25,17 +68,37 @@
   transform: scale(1);
 }
 
-.toolbar-item-weixin {
-  background-position: 0 -798px;
+.toolbar-btn, .toolbar-icon, .toolbar-text {
+  position: absolute;
+  left: 0;
+  width: 52px;
+  height: 52px;
 }
 
-.toolbar-item-weixin:hover {
-  background-position: 0 -860px;
+.toolbar-icon, .toolbar-text {
+  color: #fff;
+  text-align: center;
+  transition: top 1s;
 }
 
-.toolbar-item-weixin .toolbar-layer {
-  height: 212px;
-  background-position: 0 0px;
+.toolbar-btn {
+  top: 0;
+  overflow: hidden;
+}
+
+.toolbar-icon {
+  top: 0;
+  background-color: #d0d6d9;
+  font-size: 30px;
+  line-height: 52px;
+}
+
+.toolbar-text {
+  top: 52px;
+  background-color: #98a1a6;
+  padding-top: 12px;
+  font-size: 12px;
+  line-height: 1.2;
 }
 
 .toolbar-layer {
@@ -43,40 +106,22 @@
   right: 46px;
   bottom: -10px;
   width: 172px;
-  transform-origin: 95% 95%;
+  background: url("../images/toolbar_img.png") no-repeat;
   opacity: 0;
   filter: alpha(opacity=0);
   transform: scale(0.01);
+  transform-origin: 95% 95%;
   transition: all 1s;
 }
 
-.toolbar-item-feedback {
-  background-position: 0 -426px;
+.toolbar-layer-weixin {
+  height: 212px;
+  background-position: 0 0px;
 }
 
-.toolbar-item-feedback:hover {
-  background-position: 0 -488px;
-}
-
-.toolbar-item-app {
-  background-position: 0 -550px;
-}
-
-.toolbar-item-app:hover {
-  background-position: 0 -612px;
-}
-
-.toolbar-item-app .toolbar-layer {
+.toolbar-layer-app {
   height: 194px;
   background-position: 0 -222px;
-}
-
-.toolbar-item-top {
-  background-position: 0 -674px;
-}
-
-.toolbar-item-top:hover {
-  background-position: 0 -736px;
 }
 
 /*# sourceMappingURL=index.css.map */
