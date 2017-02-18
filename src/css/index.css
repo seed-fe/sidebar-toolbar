@@ -214,6 +214,10 @@
   content: "APP\A下载";
 }
 
+.toolbar-item-top {
+  display: none;
+}
+
 .toolbar-item-top .toolbar-btn:before {
   content: "\ea3a";
 }
