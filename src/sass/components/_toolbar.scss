@@ -50,7 +50,7 @@
 // }
 
 /* 用字体图标和CSS Sprite结合 */
-.toolbar {
+/* .toolbar {
     position: fixed;
     left: 50%;
     bottom: 5px;
@@ -122,20 +122,148 @@
 }
 .toolbar-layer-app {
     @include toolbar-layer(194, -222);
+} */
+/* 用伪元素 */
+%toolbar {
+    position: absolute;
+    left: 0;
+    width: $toolbar-size;
+    height: $toolbar-size;
 }
-.icon-wechat {
-
+/* 整个工具条的容器 */
+.toolbar {
+    position: fixed;
+    left: 50%;
+    bottom: 5px;
+    margin-left: -$toolbar-size / 2;
 }
-
-
-
-.icon-bubble {
-
+/* 单个工具的a标签 */
+.toolbar-item {
+    position: relative;
+    display: block;
+    width: $toolbar-size;
+    height: $toolbar-size;
+    margin-top: 1px;
+    // 悬浮时，图标字体上去，文字显示，二维码出现
+    &:hover {
+        .toolbar-btn {
+            &:before {
+                top: -$toolbar-size;
+            }
+            &:after {
+                top: 0;
+            }
+        }
+        &:after {
+            @include toolbar-layer-ot(1, 1);    
+        }
+    }
+    // 二维码图片
+    &:after {
+        content: "";
+        position: absolute;
+        right: $toolbar-size - 6;
+        bottom: -10px;
+        width: 172px;
+        background: url('../images/toolbar_img.png') no-repeat;
+        // 设置变形基准点靠近右下角
+        transform-origin: 95% 95%;
+        @include toolbar-layer-ot(0, 0.01);
+        transition: all 1s;
+    }
 }
-.icon-mobile {
-
+/* 工具条具体内容的span标签 */
+.toolbar-btn {
+    @extend %toolbar;
+    top: 0;
+    overflow: hidden;
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    &:before, &:after {
+        content: "";
+        color: #fff;
+        text-align: center;
+        transition: top 1s;
+    }
+    // 图标字体
+    &:before {
+        // icon
+        /* style */
+        @extend %toolbar;
+        top: 0;
+        background-color: #d0d6d9;
+        font-size: 30px;
+        line-height: $toolbar-size;
+    }
+    // 文字
+    &:after {
+        // text
+        /* style */
+        @extend %toolbar;
+        top: $toolbar-size;
+        background-color: #98a1a6;
+        font-size: 12px;
+        padding-top: 12px;
+        line-height: 1.2;
+        white-space: pre;
+    }    
 }
-
-.icon-arrow-up2 {
-
+.toolbar-item-weixin {
+    &:after {
+        content: "";
+        @include toolbar-layer(212, 0);
+    }
+    .toolbar-btn {
+        &:before {
+            content: "\e900";
+        }
+        &:after {
+            content: "公众\A账号";
+        }
+    }
+}
+.toolbar-item-feedback {
+    .toolbar-btn {
+        &:before {
+            content: "\e96b";
+        }
+        &:after {
+            content: "意见\A反馈";
+        }
+    }
+}
+.toolbar-item-app {
+    &:after {
+        content: "";
+        /* style */
+        @include toolbar-layer(194, -222);
+    }
+    .toolbar-btn {
+        &:before {
+            content: "\e958";
+        }
+        &:after {
+            content: "APP\A下载";
+        }
+    }
+        
+}
+.toolbar-item-top {
+    .toolbar-btn {
+        &:before {
+            content: "\ea3a";
+        }
+        &:after {
+            content: "返回\A顶部";
+        }
+    }
 }
