@@ -33,6 +33,14 @@ define(['jquery', 'scrollto'], function($, scrollto) {
             $el.fadeOut();
         }
     }
+    $.fn.extend({
+        backtop: function(opts) {
+            // return 是为了实现连缀
+            return this.each(function() {
+                new BackTop(this, opts);
+            })
+        }
+    })
     return {
         BackTop: BackTop
     }

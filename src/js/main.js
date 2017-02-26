@@ -40,9 +40,12 @@ requirejs.config({
 // })
 /*直接引入backtop模块，注意模块就是文件名，不是文件里面构造函数的名称*/
 requirejs(['jquery', 'backtop'], function($, backtop) {
-    new backtop.BackTop($('#backTop'), {
-        mode: 'go'
-        // pos: 50,
-        // speed: 2000
-    });
+    // new backtop.BackTop($('#backTop'), {
+    //     mode: 'go'
+    //     // pos: 50,
+    //     // speed: 2000
+    // });
+    $('#backTop').backtop({
+        mode: 'move'
+    })
 })
