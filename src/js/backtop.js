@@ -1,14 +1,16 @@
-define(['jquery', 'scrollto'], function($, scrollto) {
+define(['jquery'], function($) {
+    // 不用scrollto模块了，直接在move和go方法中操作html和body的scrollTop
+    var scrollObject = $('html, body');
     function BackTop (el, opts) {
         // body...
         this.opts = $.extend({}, BackTop.DEFAULTS, opts);
         this.$el = $(el);
-        this.scroll = new scrollto.ScrollTo({
-            dest: 0,
-            speed: this.opts.speed
-        })
+        // this.scroll = new scrollto.ScrollTo({
+        //     dest: 0,
+        //     speed: this.opts.speed
+        // });
         if (this.opts.mode == 'move') {
-            // jquery的proxy方法相当于原生的bind方法，改变函数的执行环境，这里this原本是指向BackTop的实例，调用proxy方法后指向this.$el
+            // jquery的proxy方法相当于原生的bind方法，改变函数的执行环境，这里this原本是指向BackTop的实例(因为是调用BackTop的原型方法)，调用proxy方法后指向this.$el
             this.$el.on('click', $.proxy(this._move, this));
         } else {
             this.$el.on('click', $.proxy(this._go, this));
@@ -16,7 +18,11 @@ define(['jquery', 'scrollto'], function($, scrollto) {
         $(window).on('scroll', $.proxy(this._checkPosition, this));
     }
     BackTop.DEFAULTS = {
+        // 回到顶部的方式
         mode: 'move',
+        // 回到顶部的终点
+        dest: 0,
+        // 表示回到顶部按钮显示隐藏切换的位置
         pos: $(window).height(),
         speed: 800
     }
@@ -38,12 +44,29 @@ define(['jquery', 'scrollto'], function($, scrollto) {
     BackTop.prototype = {
         constructor: BackTop,
         _move: function() {
-            this.scroll.move();        
+            console.log('move executed~')
+            var opts = this.opts,
+            dest = opts.dest;
+            // console.log(this)
+            console.log(dest);
+            if ($(window).scrollTop() != dest) {
+                if (!scrollObject.is(':animated')) {
+                    console.log(1);
+                    console.log(scrollObject);
+                    scrollObject.animate({
+                        scrollTop: dest
+                    }, opts.speed);
+                }
+            }        
         },
         _go: function() {
-            this.scroll.go();       
+            var dest = this.opts.dest;
+            if ($(window).scrollTop() != dest) {
+               scrollObject.scrollTop(dest); 
+            }       
         },
         _checkPosition: function() {
+            // console.log('checkPosition executed~');
             var $el = this.$el;
             if ($(window).scrollTop() > this.opts.pos) {
                 $el.fadeIn().css('display', 'block');
@@ -52,10 +75,11 @@ define(['jquery', 'scrollto'], function($, scrollto) {
             }
         }
     }
-    // 将一个对象添加到jquery的原型上从而提供新的jquery实例方法，这里就相当于给jquery实例对象提供了一个backtop方法，这也是实现jquery插件的常用方法
+    // 将一个对象添加到jquery的原型上从而提供新的jquery实例方法，这里就相当于给jquery实例对象提供了一个backtop方法，这也是实现jquery插件的常用方法，对象里定义的方法名就是插件方法名
     $.fn.extend({
         backtop: function(opts) {
-            // return 是为了实现连缀
+            // return 是为了实现连缀，这里的this指代调用插件时用jquery选择的元素，调用each方法是因为可能会选择多个元素
+            // console.log(this.$el);
             return this.each(function() {
                 new BackTop(this, opts);
             })

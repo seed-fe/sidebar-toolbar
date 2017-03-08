@@ -46,6 +46,8 @@ requirejs(['jquery', 'backtop'], function($, backtop) {
     //     // speed: 2000
     // });
     $('#backTop').backtop({
-        mode: 'move'
+        // el
+        mode: 'move',
+        speed: 400
     })
 })
