@@ -71,3 +71,46 @@ gulp.task('reload',['watchsass'], function() {
 gulp.task('default', ['reload'], function() {
     console.log('gulp is running~');
 });
+
+/*发布阶段，css、js的合并压缩，image的压缩等（合并，重命名，防缓存……）*/
+/*如果开发阶段各种调试测试没问题了，就一次性压缩所有文件*/
+/*一次压缩所有CSS文件*/
+gulp.task('minifycss', function() {
+    return gulp.src('src/css/**/*.css')
+      .pipe(plugins.sourcemaps.init())
+      .pipe(plugins.autoprefixer({
+        // 设置支持的浏览器，这里是主要浏览器的最新两个版本
+        browsers: 'last 2 versions'
+      }))
+      .pipe(cleanCSS())
+      .pipe(plugins.sourcemaps.write('./'))
+      .pipe(gulp.dest('dist/css/'));
+});
+// 需要一次编译所有js文件就用这个
+gulp.task('uglifyjs', function () {
+    var combined = combiner.obj([
+        gulp.src('src/script/**/*.js'),
+        plugins.sourcemaps.init(),
+        plugins.uglify(),
+        plugins.rev(),
+        plugins.sourcemaps.write('./'),
+        gulp.dest('dist/script/'),
+        plugins.rev.manifest(),
+        gulp.dest('rev/script')
+    ]);
+    combined.on('error', handleError);
+    return combined;
+});
+// 压缩所有图片
+gulp.task('image', function () {
+    return gulp.src('src/image/**/*')
+        .pipe(plugins.imagemin({
+            progressive: true
+        }))
+        .pipe(gulp.dest('dist/image/'));
+});
+/*复制HTML*/
+gulp.task('html',['minifycss', 'image'], function() {
+    return gulp.src('src/*.html')
+      .pipe(gulp.dest('dist/'));
+});

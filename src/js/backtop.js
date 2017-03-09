@@ -80,6 +80,7 @@ define(['jquery'], function($) {
         backtop: function(opts) {
             // return 是为了实现连缀，这里的this指代调用插件时用jquery选择的元素，调用each方法是因为可能会选择多个元素
             // console.log(this); // 回到顶部按钮元素
+            // .each()方法的回调函数的执行环境是当前dom元素，也就是说this始终指向当前dom元素，所以下面的回掉函数就是创建一个BackTop的实例，并把当前dom元素作为参数传入
             return this.each(function() {
                 new BackTop(this, opts);
             })
