@@ -3,6 +3,7 @@ const plugins = require('gulp-load-plugins')();
 const gutil = require('gulp-util');
 const cleanCSS = require('gulp-clean-css');
 const combiner = require('stream-combiner2');
+const rev = require('gulp-rev');
 const browserSync = require('browser-sync').create();
 const reload = browserSync.reload;
 const handleError = function(err) {
@@ -92,25 +93,25 @@ gulp.task('uglifyjs', function () {
         gulp.src('src/script/**/*.js'),
         plugins.sourcemaps.init(),
         plugins.uglify(),
-        plugins.rev(),
+        // plugins.rev(),
         plugins.sourcemaps.write('./'),
         gulp.dest('dist/script/'),
-        plugins.rev.manifest(),
-        gulp.dest('rev/script')
+        // plugins.rev.manifest(),
+        // gulp.dest('rev/script')
     ]);
     combined.on('error', handleError);
     return combined;
 });
 // 压缩所有图片
 gulp.task('image', function () {
-    return gulp.src('src/image/**/*')
+    return gulp.src('src/images/**/*')
         .pipe(plugins.imagemin({
             progressive: true
         }))
         .pipe(gulp.dest('dist/image/'));
 });
 /*复制HTML*/
-gulp.task('html',['minifycss', 'image'], function() {
+gulp.task('html',['minifycss', 'image', 'uglifyjs'], function() {
     return gulp.src('src/*.html')
       .pipe(gulp.dest('dist/'));
 });
