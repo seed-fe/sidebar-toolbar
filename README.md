@@ -24,4 +24,6 @@ developed with sass &amp; requirejs
    * pos： 回到顶部按钮触发显示隐藏切换的位置，示例中是滚动超过一屏高度时显示按钮；
    * speed： 当mode取值是move时的动画速度，单位是毫秒。
    
+   查看[demo](https://seed-fe.github.io/sidebar-toolbar/)
+   
    插件具体制作思路详见wiki。
