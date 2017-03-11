@@ -19,10 +19,10 @@ developed with sass &amp; requirejs
    ```
    
    对按钮元素调用backtop方法，传入一些选项参数，包括：
-   * mode: 回到顶部的方式，可以取两个值，move是动画式，go是直接回到顶部；
-   * dest：回到顶部的终点，是一个数值；
-   * pos： 回到顶部按钮触发显示隐藏切换的位置，示例中是滚动超过一屏高度时显示按钮；
-   * speed： 当mode取值是move时的动画速度，单位是毫秒。
+   * mode: 回到顶部的方式，可以取两个值，move是动画式，go是直接回到顶部，默认值是move；
+   * dest：回到顶部的终点，是一个数值，默认值是0，表示回到页面最顶端；
+   * pos： 回到顶部按钮触发显示隐藏切换的位置，是一个数值，示例中是滚动超过一屏高度时显示按钮，默认值就是$(window).height()；
+   * speed： 当mode取值是move时的动画速度，单位是毫秒，默认值是800。
    
    查看[demo](https://seed-fe.github.io/sidebar-toolbar/)
    
