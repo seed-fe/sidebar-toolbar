@@ -1,3 +1,6 @@
 # sidebar-toolbar
 developed with sass &amp; requirejs
-根据慕课网[侧栏工具条开发](http://www.imooc.com/learn/425)课程制作的侧栏工具条，使用了面向对象的写法，其中回到顶部功能封装成了jquery插件。
+### 使用图标字体的方式
+* 图标字体替换了部分图片，提高了性能，且方便修改
+* HTML结构稍显复杂
+* 图标字体只能兼容到IE8
