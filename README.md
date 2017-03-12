@@ -2,7 +2,7 @@
 developed with sass &amp; requirejs
 根据慕课网[侧栏工具条开发](http://www.imooc.com/learn/425)课程制作的侧栏工具条，使用了面向对象的写法，其中回到顶部功能封装成了jquery插件。
 
-
+与原课程有些不同：去掉了scrollto.js，直接在backtop.js里实现功能并制作成插件，从而去掉了很多重复的代码。
 # 插件使用方法
 1. 需引入jQuery
 2. 在jQuery之后引入backtop.js
