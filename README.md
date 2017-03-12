@@ -8,10 +8,11 @@ developed with sass &amp; requirejs
 * 避免了图片的使用，提升性能，修改方便；
 * HTML结构简单，但CSS复杂；
 * 不兼容IE6和IE7
-=======
+
+
 
 与原课程有些不同：去掉了scrollto.js，直接在backtop.js里实现功能并制作成插件，从而去掉了很多重复的代码。
-# 插件使用方法
+### 插件使用方法
 1. 需引入jQuery
 2. 在jQuery之后引入backtop.js
 3. 任意dom元素都可作为返回顶部的按钮
