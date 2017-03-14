@@ -16,6 +16,8 @@ define(['jquery'], function($) {
             this.$el.on('click', $.proxy(this._go, this));
         }
         $(window).on('scroll', $.proxy(this._checkPosition, this));
+        // this._checkPositionOnload();
+        this._checkPosition();
     }
     BackTop.DEFAULTS = {
         // 回到顶部的方式
@@ -74,15 +76,21 @@ define(['jquery'], function($) {
                 $el.fadeOut();
             }
         }
+        /*,
+        _checkPositionOnload: function () {
+            var $el = this.$el;
+            if ($(window).scrollTop() > this.opts.pos) {
+                $el.css('display', 'block');
+            }
+        }*/
     }
     // 将一个对象添加到jquery的原型上从而提供新的jquery实例方法，这里就相当于给jquery实例对象提供了一个backtop方法，这也是实现jquery插件的常用方法，对象里定义的方法名就是插件方法名
     $.fn.extend({
         backtop: function(opts) {
-            // return 是为了实现连缀，这里的this指代调用插件时用jquery选择的元素，调用each方法是因为可能会选择多个元素，就需要隐式迭代，通过return返回jquery对象从而可以继续调用别的jquery方法，实现连缀
+            // return 是为了实现连缀，这里的this指代调用插件时用jquery选择的元素，调用each方法是因为可能会选择多个元素
             // console.log(this); // 回到顶部按钮元素
             // .each()方法的回调函数的执行环境是当前dom元素，也就是说this始终指向当前dom元素，所以下面的回掉函数就是创建一个BackTop的实例，并把当前dom元素作为参数传入
             return this.each(function() {
-                // 注意在这里调用的.each()方法中，this引用的是一个dom元素（当前dom元素），而创建BackTop实例后会将这个dom元素转化为一个jquery对象
                 new BackTop(this, opts);
             })
         }
