@@ -16,6 +16,7 @@ developed with sass &amp; requirejs
 1. 需引入jQuery
 2. 在jQuery之后引入backtop.js
 3. 任意dom元素都可作为返回顶部的按钮
+
   示例：
   
    ``` 
