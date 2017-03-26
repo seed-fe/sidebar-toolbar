@@ -36,5 +36,5 @@ developed with sass &amp; requirejs
    
    查看[demo](https://seed-fe.github.io/sidebar-toolbar/)
    
-   插件具体制作思路详见wiki。
+   插件具体制作思路详见[wiki](https://github.com/seed-fe/sidebar-toolbar/wiki/%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E6%8F%92%E4%BB%B6%E5%88%B6%E4%BD%9C%E6%80%9D%E8%B7%AF)。
 
