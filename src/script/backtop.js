@@ -5,10 +5,7 @@ define(['jquery'], function($) {
         // body...
         this.opts = $.extend({}, BackTop.DEFAULTS, opts);
         this.$el = $(el);
-        // this.scroll = new scrollto.ScrollTo({
-        //     dest: 0,
-        //     speed: this.opts.speed
-        // });
+        this.isShow = false;
         if (this.opts.mode == 'move') {
             // jquery的proxy方法相当于原生的bind方法，改变函数的执行环境，这里this原本是指向BackTop的实例(因为是调用BackTop的原型方法)，调用proxy方法后指向this.$el
             this.$el.on('click', $.proxy(this._move, this));
@@ -46,15 +43,15 @@ define(['jquery'], function($) {
     BackTop.prototype = {
         constructor: BackTop,
         _move: function() {
-            console.log('move executed~')
+            // console.log('move executed~')
             var opts = this.opts,
             dest = opts.dest;
             // console.log(this)
-            console.log(dest);
+            // console.log(dest);
             if ($(window).scrollTop() != dest) {
                 if (!scrollObject.is(':animated')) {
-                    console.log(1);
-                    console.log(scrollObject);
+                    // console.log(1);
+                    // console.log(scrollObject);
                     scrollObject.animate({
                         scrollTop: dest
                     }, opts.speed);
@@ -71,9 +68,17 @@ define(['jquery'], function($) {
             // console.log('checkPosition executed~');
             var $el = this.$el;
             if ($(window).scrollTop() > this.opts.pos) {
-                $el.fadeIn().css('display', 'block');
+                if (!this.isShow) {
+                    $el.fadeIn().css('display', 'block');
+                    this.isShow = true;
+                }
+                
             } else {
-                $el.fadeOut();
+                if (this.isShow) {
+                    $el.fadeOut();
+                    this.isShow = false;
+                }
+                
             }
         }
         /*,
