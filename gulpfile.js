@@ -47,7 +47,7 @@ gulp.task('watchsass', function() {
         return combined;
     })
 });
-// 先执行监听和编译Sass的任务，然后启动Browsersync，并监听src/路径下所有html、css和js文件（js文件还需要js-hint等前置的任务，可以防止watchjs任务里）
+// 先执行监听和编译Sass的任务，然后启动Browsersync，并监听src/路径下所有html、css和js文件（js文件还需要js-hint等前置的任务，可以防在watchjs任务里）
 gulp.task('reload',['watchsass'], function() {
     browserSync.init({
         // 设置监听的文件，以baseDir设置的根目录为起点，单个文件就用字符串，多个文件就用数组
